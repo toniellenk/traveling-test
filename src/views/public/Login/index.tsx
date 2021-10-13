@@ -1,4 +1,4 @@
-import { Form, Divider } from 'antd';
+import { Form, Divider, Spin } from 'antd';
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'reactstrap';
 import keySvg from '../../../icons/key.svg';
@@ -17,8 +17,11 @@ function Login() {
   const [loading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  const logar = () => { };
-  
+  const logar = () => {
+    setIsLoading(true);
+    setTimeout(() => setIsLoading(false), 3000);
+  };
+
   return (
     <div>
       <Row className="containerLogin">
@@ -29,14 +32,14 @@ function Login() {
                 <div className="p-3">
                   <div className="titleLogin titMob">Olá! Seja bem-vindo ao EasyBind4U</div>
                   <div className="subLabel pt-3 titMob">Entre com seu nome de usuário e senha.</div>
-                 
+
                 </div>
               </div>
             </Col>
           </Row>
           <Row className="rowLogin">
             <Col xs="12" style={{ width: '345px' }}>
-              <div className="p-3">
+              <div>
                 <Form
                   autoComplete={'false'}
                   initialValues={{ remember: true }}
@@ -46,11 +49,10 @@ function Login() {
                     className="mb-2"
                     name="email"
                     rules={[
-                      // {
-                      //   required: true,
-                      //   type: 'email',
-                      //   message: 'Favor inserir um E-mail válido',
-                      // },
+                      {
+                        required: true,
+                        message: 'Favor inserir um E-mail',
+                      },
                     ]}>
                     <InputCustom
                       prefix={<img src={userSvg} />}
@@ -60,10 +62,10 @@ function Login() {
                     className="my-2"
                     name="senha"
                     rules={[
-                      // {
-                      //   required: true,
-                      //   message: 'Favor informar a sua senha!',
-                      // },
+                      {
+                        required: true,
+                        message: 'Favor informar a sua senha',
+                      },
                     ]}>
                     <InputCustom
                       prefix={<img src={keySvg} alt="Entrar" />}
@@ -73,18 +75,18 @@ function Login() {
                     />
                   </Form.Item>
                   <div className="subLabel pt-3" style={{ textAlign: 'right', textDecorationLine: 'underline' }}><a href="#">Esqueceu a Senha?</a></div>
-                  <Form.Item>
-                    <div className="text-center pt-2 btnEntrar">
-                      <ButtonCustom
-                        fluid
-                        className="my-1"
-                        primary
-                        isloading={loading.toString()}
-                        loadtext="Entrando...">
-                        Entrar
-                      </ButtonCustom>
-                    </div>
-                  </Form.Item>
+                  {loading ? <Spin style={{ display: 'flex', justifyContent: 'center' }} /> :
+                    <Form.Item>
+                      <div className="text-center pt-2 btnEntrar">
+                        <ButtonCustom
+                          fluid
+                          className="my-1"
+                          primary>
+                          Entrar
+                        </ButtonCustom>
+                      </div>
+                    </Form.Item>
+                  }
                   <div className="subLabel mt-5">
                     Não têm uma conta?
                     <a onClick={() => history.push('/cadastro')} style={{ paddingLeft: '5px', textDecorationLine: 'underline', fontWeight: 700 }}>Cadastre-se</a>
@@ -96,9 +98,7 @@ function Login() {
                     prefix={<img style={{ paddingRight: '20px' }} alt="Google" src={googleSvg} />}
                     fluid
                     className="my-1 btnGoogle"
-                    primary
-                    isloading={loading.toString()}
-                    loadtext="Validando...">
+                    primary>
                     Entrar com Google
                   </ButtonCustom>
                 </div>
@@ -107,9 +107,7 @@ function Login() {
                     prefix={<img style={{ paddingRight: '15px' }} alt="Facebook" src={facebookSvg} />}
                     fluid
                     className="my-1 btnFacebook"
-                    primary
-                    isloading={loading.toString()}
-                    loadtext="Validando...">
+                    primary>
                     Entrar com Facebook
                   </ButtonCustom>
                 </div>

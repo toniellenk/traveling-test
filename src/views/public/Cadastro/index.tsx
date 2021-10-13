@@ -12,7 +12,9 @@ function Cadastro() {
   const [loading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  const logar = () => { };
+  const dadosPessoais = () => {
+    history.push('/dados-pessoais')
+  };
 
   return (
     <div>
@@ -29,11 +31,11 @@ function Cadastro() {
           </Row>
           <Row className="rowCadastro">
             <Col xs="12" style={{ width: '345px' }}>
-              <div className="p-3">
+              <div>
                 <Form
                   autoComplete={'false'}
                   initialValues={{ remember: true }}
-                  onFinish={logar}
+                  onFinish={dadosPessoais}
                   scrollToFirstError>
                   <Form.Item
                     className="mb-2"
@@ -84,7 +86,7 @@ function Cadastro() {
                           if (!value) {
                             return Promise.reject('Favor inserir um CPF válido (somente números)');
                           }
-                          
+
                           if (value) {
                             const isDocumento = checkDocumento('cpf', value);
                             if (isDocumento === true) {
