@@ -7,16 +7,11 @@ import Route from './Routers';
 // import RecuperarSenha from '~/views/public/RecuperarSenha';
 // import DeskAtendimentos from '~/views/public/Desktop/Atendimentos';
 
-const PublicRoutes = () => (
+const PrivateRoutes = () => (
     <Fragment>
         <Switch>
-         {/*   <Route path="/" exact component={Login} />
-             <Route path="/esqueci-senha" exact component={EsqueciSenha} />
-      <Route path="/auth/confirmar-email" exact component={ConfirmacaoEmail} />
-      <Route path="/auth/recuperar-senha" exact component={RecuperarSenha} />
-      <Route path="/auth/atendimentos" exact component={DeskAtendimentos} /> */}
         </Switch>
     </Fragment>
 );
 
-export default PublicRoutes;
+export default PrivateRoutes;

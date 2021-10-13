@@ -1,23 +1,20 @@
-import React, { Fragment } from 'react';
-import { Switch } from 'react-router-dom';
-import Route from './Routers';
+import { Redirect, Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import Login from '../views/public/Login';
-// import EsqueciSenha from '~/views/public/EsqueciSenha';
-// import ConfirmacaoEmail from '~/views/public/ConfirmarEmail';
-// import RecuperarSenha from '~/views/public/RecuperarSenha';
-// import DeskAtendimentos from '~/views/public/Desktop/Atendimentos';
+import Cadastro from '../views/public/Cadastro';
+
 
 const PublicRoutes = () => (
-    <Fragment>
-        <Switch>
-            <Route path="/" exact component={Login} />
-            {/* <Route path="/esqueci-senha" exact component={EsqueciSenha} />
-      <Route path="/auth/confirmar-email" exact component={ConfirmacaoEmail} />
-      <Route path="/auth/recuperar-senha" exact component={RecuperarSenha} />
-      <Route path="/auth/atendimentos" exact component={DeskAtendimentos} /> */}
-        </Switch>
-    </Fragment>
+    <>
+        <Router>
+            <Switch>
+                <Route path="/cadastro" component={Cadastro} />
+                <Route path="/login" component={Login} />
+                <Redirect exact from="/" to="/login" />
+            </Switch>
+        </Router>
+    </>
 );
+
 
 export default PublicRoutes;

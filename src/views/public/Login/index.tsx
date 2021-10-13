@@ -1,7 +1,6 @@
-import { Form, Input, Divider } from 'antd';
-import { useState } from 'react';
+import { Form, Divider } from 'antd';
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'reactstrap';
-import { Button } from 'semantic-ui-react';
 import keySvg from '../../../icons/key.svg';
 import userSvg from '../../../icons/user.svg';
 import googleSvg from '../../../icons/google.svg';
@@ -9,14 +8,17 @@ import facebookSvg from '../../../icons/facebook.svg';
 import './login.css';
 import ButtonCustom from '../../../shared/ButtonCustom';
 import InputCustom from '../../../shared/InputCustom';
+import { useHistory } from 'react-router-dom';
+
 
 
 
 function Login() {
   const [loading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   const logar = () => { };
-
+  
   return (
     <div>
       <Row className="containerLogin">
@@ -27,6 +29,7 @@ function Login() {
                 <div className="p-3">
                   <div className="titleLogin titMob">Olá! Seja bem-vindo ao EasyBind4U</div>
                   <div className="subLabel pt-3 titMob">Entre com seu nome de usuário e senha.</div>
+                 
                 </div>
               </div>
             </Col>
@@ -63,13 +66,13 @@ function Login() {
                       // },
                     ]}>
                     <InputCustom
-                      prefix={<img src={keySvg} />}
+                      prefix={<img src={keySvg} alt="Entrar" />}
                       password
                       autoComplete="off"
                       placeholder=" Senha"
                     />
                   </Form.Item>
-                  <div className="subLabel pt-3" style={{ textAlign: 'right', textDecorationLine: 'underline' }}><a>Esqueceu a Senha?</a></div>
+                  <div className="subLabel pt-3" style={{ textAlign: 'right', textDecorationLine: 'underline' }}><a href="#">Esqueceu a Senha?</a></div>
                   <Form.Item>
                     <div className="text-center pt-2 btnEntrar">
                       <ButtonCustom
@@ -77,20 +80,20 @@ function Login() {
                         className="my-1"
                         primary
                         isloading={loading.toString()}
-                        loadtext="Validando...">
+                        loadtext="Entrando...">
                         Entrar
                       </ButtonCustom>
                     </div>
                   </Form.Item>
                   <div className="subLabel mt-5">
                     Não têm uma conta?
-                    <a style={{ paddingLeft: '5px', textDecorationLine: 'underline', fontWeight: 700 }}>Cadastre-se</a>
+                    <a onClick={() => history.push('/cadastro')} style={{ paddingLeft: '5px', textDecorationLine: 'underline', fontWeight: 700 }}>Cadastre-se</a>
                   </div>
                   <Divider className="mt-4"><span className="subLabel"> ou </span></Divider>
                 </Form>
                 <div className="mt-4 btnCenter">
                   <ButtonCustom
-                    prefix={<img style={{ paddingRight: '20px' }} src={googleSvg} />}
+                    prefix={<img style={{ paddingRight: '20px' }} alt="Google" src={googleSvg} />}
                     fluid
                     className="my-1 btnGoogle"
                     primary
@@ -101,7 +104,7 @@ function Login() {
                 </div>
                 <div className="mt-2 btnCenter">
                   <ButtonCustom
-                    prefix={<img style={{ paddingRight: '15px' }} src={facebookSvg} />}
+                    prefix={<img style={{ paddingRight: '15px' }} alt="Facebook" src={facebookSvg} />}
                     fluid
                     className="my-1 btnFacebook"
                     primary
