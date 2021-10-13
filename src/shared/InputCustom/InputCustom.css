@@ -1,0 +1,51 @@
+.ant-input{
+    background-color: #E1E8F3 !important;
+}
+
+.ant-input::placeholder{
+    color: #828BA1 !important;
+    padding-left: 15px;
+}
+
+.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+    background-color: #E1E8F3 !important;
+}
+
+.ant-form-item-has-error :not(.ant-input-disabled):not(.ant-input-borderless).ant-input::placeholder {
+    color: #828BA1 !important;
+    padding-left: 15px;
+}
+
+
+.inputCustom{
+    background: #E1E8F3 !important;
+    border-radius: 8px;
+    height: 40px;
+}
+
+.inputCustom::placeholder{
+    color: #828BA1 !important;
+    padding-left: 15px;
+}
+
+.inputCustom::selection{
+    background: #E1E8F3 !important;
+}
+
+.inputCustom::before{
+    background: #E1E8F3 !important;
+}
+
+
+.ant-input-prefix{
+    color: #828BA1 !important;
+}
+
+
+.ant-input-suffix{
+    color: #828BA1 !important;
+}
+
+
+                
+

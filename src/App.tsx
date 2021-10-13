@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import './App.css';
+import 'semantic-ui-css/semantic.min.css';
 
 import History from './services/History';
 import PublicRoutes from './routes/PublicRoutes';
