@@ -1,5 +1,4 @@
-import { Form, Divider } from 'antd';
-import { useState } from 'react';
+import { Form } from 'antd';
 import { Col, Row } from 'reactstrap';
 import './cadastro.css';
 import ButtonCustom from '../../../shared/ButtonCustom';
@@ -9,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 
 
 function Cadastro() {
-  const [loading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const dadosPessoais = () => {
@@ -107,8 +105,7 @@ function Cadastro() {
                       <ButtonCustom
                         fluid
                         className="my-1"
-                        primary
-                        isloading={loading.toString()}>
+                        primary>
                         Próxima
                       </ButtonCustom>
                     </div>

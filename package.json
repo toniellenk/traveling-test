@@ -40,7 +40,8 @@
     ],
     "rules": {
       "jsx-a11y/anchor-is-valid": "off",
-      "jsx-a11y/alt-text": "off"
+      "jsx-a11y/alt-text": "off",
+      "no-empty-pattern" : "off"
     }
   },
   "browserslist": {

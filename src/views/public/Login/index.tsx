@@ -1,5 +1,5 @@
 import { Form, Divider, Spin } from 'antd';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Col, Row } from 'reactstrap';
 import keySvg from '../../../icons/key.svg';
 import userSvg from '../../../icons/user.svg';
