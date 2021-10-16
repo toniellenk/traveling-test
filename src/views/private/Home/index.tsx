@@ -61,7 +61,7 @@ function Home() {
               <Col xs="12">
                 <div className="d-flex justify-content-center p-2">
                   <div className="p-3">
-                    <div className="titleLogin titMob">Olá! Seja bem-vindo {data?.fullName}</div>
+                    <div className="titleLogin titMobHome">Olá! Seja bem-vindo {data?.fullName}</div>
                   </div>
                 </div>
               </Col>

@@ -6,12 +6,12 @@
     height: 100vh;
 }
 
-.titMob{
+.titMobHome{
     width: 600px;
 }
 
 @media (max-width: 641px) {
-    .titMob{
+    .titMobHome{
         text-align: left !important;
     }
 }

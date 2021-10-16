@@ -34,7 +34,7 @@ function Cadastro() {
             <Col xs="12">
               <div className="d-flex justify-content-center p-2">
                 <div className="p-3">
-                  <div className="titleCadastro titMob">Preencha os campos para prosseguir com o cadastro</div>
+                  <div className="titleCadastro titMobCad">Preencha os campos para prosseguir com o cadastro</div>
                 </div>
               </div>
             </Col>

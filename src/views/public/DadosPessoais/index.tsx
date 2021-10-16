@@ -57,7 +57,7 @@ function DadosPessoais() {
             <Col xs="12">
               <div className="d-flex justify-content-center p-2">
                 <div className="p-3">
-                  <div className="titleDadosPessoais titMob">Para terminar, defina um nome de usuário e uma senha</div>
+                  <div className="titleDadosPessoais titMobDados">Para terminar, defina um nome de usuário e uma senha</div>
                 </div>
               </div>
             </Col>
