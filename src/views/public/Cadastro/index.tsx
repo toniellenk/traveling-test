@@ -6,12 +6,24 @@ import InputCustom from '../../../shared/InputCustom';
 import checkDocumento from '../../../shared/checkDocumento';
 import { useHistory } from 'react-router-dom';
 
+export declare interface ICadastro {
+  fullName: string,
+  email: string,
+  nickname: string,
+  birthday: string,
+  cpfCnpj: string,
+  account: {
+    id: string,
+    pass: string,
+    checkPass: string
+  }
+}
 
 function Cadastro() {
   const history = useHistory();
 
-  const dadosPessoais = () => {
-    history.push('/dados-pessoais')
+  const dadosPessoais = (values: ICadastro) => {
+    history.push('/dados-pessoais', values)
   };
 
   return (
@@ -32,12 +44,12 @@ function Cadastro() {
               <div>
                 <Form
                   autoComplete={'false'}
-                  initialValues={{ remember: true }}
+                  initialValues={{}}
                   onFinish={dadosPessoais}
                   scrollToFirstError>
                   <Form.Item
                     className="mb-2"
-                    name="nome"
+                    name="fullName"
                     rules={[
                       {
                         required: true,
@@ -62,7 +74,7 @@ function Cadastro() {
                   </Form.Item>
                   <Form.Item
                     className="mb-2"
-                    name="dataNascimento"
+                    name="birthday"
                     rules={[
                       {
                         required: true,
@@ -76,7 +88,7 @@ function Cadastro() {
                   </Form.Item>
                   <Form.Item
                     className="mb-2"
-                    name="cpf"
+                    name="cpfCnpj"
                     rules={[
                       // eslint-disable-next-line no-empty-pattern
                       ({ }) => ({

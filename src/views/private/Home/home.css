@@ -1,0 +1,56 @@
+.containerHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.titMob{
+    width: 600px;
+}
+
+@media (max-width: 641px) {
+    .titMob{
+        text-align: left !important;
+    }
+}
+
+.rowHome{
+    display: flex;
+    justify-content: center;
+}
+
+.colHome{
+    border: 3px solid purple;
+    padding: 20px;
+    color: #828BA1;
+}
+
+label{
+    color: purple;
+}
+
+.titleHome{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+.subLabel{
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #828BA1;
+}
+
+.btnVoltar{
+    width: 255px !important;
+    border: 1px solid #E8EEF4 !important;
+}

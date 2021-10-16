@@ -9,7 +9,7 @@ const InputCustom = (props: any, Icon: ReactNode) => {
             {props.children}
         </Input.Password>
         :
-        <Input {...props} className={`inputCustom ${props.className}`}>
+        <Input {...props} className={`inputCustom ${props.className}`} >
             {props.children}
         </Input>)
 }

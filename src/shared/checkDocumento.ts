@@ -1,14 +1,14 @@
-import {isValid as isValidCpf} from '@fnando/cpf';
-import {isValid as isValidCnpj} from '@fnando/cnpj';
+import { isValid as isValidCpf } from '@fnando/cpf';
+import { isValid as isValidCnpj } from '@fnando/cnpj';
 
-function checkCpfInvalid(value :any) {
+function checkCpfInvalid(value: string) {
   if (value && !isValidCpf(value)) {
     return true;
   }
   return false;
 }
 
-function checkCnpjInvalid(value: any) {
+function checkCnpjInvalid(value: string) {
   if (value && !isValidCnpj(value)) {
     return true;
   }

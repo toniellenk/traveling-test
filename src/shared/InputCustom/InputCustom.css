@@ -1,3 +1,11 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill::selection, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #E1E8F3 inset !important;
+}
+
 .ant-input{
     background-color: #E1E8F3 !important;
 }

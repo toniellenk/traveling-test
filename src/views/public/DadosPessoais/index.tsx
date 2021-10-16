@@ -1,17 +1,49 @@
-import { Form } from 'antd';
+import { Form, Spin } from 'antd';
 import { Col, Row } from 'reactstrap';
 import './dadosPessoais.css';
 import ButtonCustom from '../../../shared/ButtonCustom';
 import InputCustom from '../../../shared/InputCustom';
 import checkAlfanumerico from '../../../shared/checkAlfanumerico';
-import checkAlfanumerioOr from '../../../shared/checkAlfanumerico';
-import { useHistory } from 'react-router-dom';
+import { checkAlfanumerioOr } from '../../../shared/checkAlfanumerico';
+import { useHistory, useLocation } from 'react-router-dom';
+import { ICadastro } from '../Cadastro';
+import api from '../../../services/api';
+import Notify from '../../../shared/Notify';
+import { useState } from 'react';
 
 
 function DadosPessoais() {
   const history = useHistory();
+  const [loading, setIsLoading] = useState(false);
 
-  const finalizar = () => { };
+  const { state } = useLocation<ICadastro>();
+
+  const finalizar = (values: any) => {
+    setIsLoading(true);
+
+    const payload = {
+      ...state,
+      nickname: values.nickname,
+      account: {
+        id: values.email,
+        pass: values.pass,
+        checkPass: values.checkPass
+      },
+    };
+
+    api.post('o/customer', payload)
+      .then(() => {
+        setIsLoading(false);
+        Notify('success', 'Sucesso', 'Cadastro realizado com sucesso. Faça o Login!');
+        history.push('/');
+      })
+      .catch((err) => {
+        const { message } = err.response.data;
+        Notify('error', 'Atenção', message);
+
+        setIsLoading(false);
+      });
+  };
 
   return (
     <div>
@@ -31,12 +63,12 @@ function DadosPessoais() {
               <div>
                 <Form
                   autoComplete={'false'}
-                  initialValues={{ remember: true }}
+                  initialValues={{}}
                   onFinish={finalizar}
                   scrollToFirstError>
                   <Form.Item
                     className="mb-2"
-                    name="nome"
+                    name="nickname"
                     rules={[
                       {
                         required: true,
@@ -68,7 +100,7 @@ function DadosPessoais() {
                   <div className="subLabel" style={{ fontSize: '12px', paddingTop: '8px', paddingBottom: '40px' }}>Use letras ou números, mas evite pontos e espaços.</div>
                   <Form.Item
                     className="my-2"
-                    name="senha"
+                    name="pass"
                     rules={[
                       {
                         required: true,
@@ -102,8 +134,8 @@ function DadosPessoais() {
                   </Form.Item>
                   <Form.Item
                     className="my-2"
-                    name="senhaConfirmacao"
-                    dependencies={['senha']}
+                    name="checkPass"
+                    dependencies={['pass']}
                     rules={[
                       {
                         required: true,
@@ -113,7 +145,7 @@ function DadosPessoais() {
                         validator(rule, value) {
                           if (
                             !value ||
-                            getFieldValue('senha') === value
+                            getFieldValue('pass') === value
                           ) {
                             return Promise.resolve();
                           }
@@ -129,20 +161,21 @@ function DadosPessoais() {
                       placeholder=" Confirmar senha"
                     />
                   </Form.Item>
-                  <div className="subLabel mt-5" style={{fontSize: '12px'}}>
+                  <div className="subLabel mt-5" style={{ fontSize: '12px' }}>
                     Eu concordo com os termos e condições de uso
-                    <a style={{ paddingLeft: '5px', textDecorationLine: 'underline', fontWeight: 700}}>termos e condições de uso</a>
+                    <a style={{ paddingLeft: '5px', textDecorationLine: 'underline', fontWeight: 700 }}>termos e condições de uso</a>
                   </div>
-                  <Form.Item>
-                    <div className="text-center pt-2 btnProximo">
-                      <ButtonCustom
-                        fluid
-                        className="my-1"
-                        primary>
-                        Concluir
-                      </ButtonCustom>
-                    </div>
-                  </Form.Item>
+                  {loading ? <Spin style={{ display: 'flex', justifyContent: 'center' }} /> :
+                    <Form.Item>
+                      <div className="text-center pt-2 btnProximo">
+                        <ButtonCustom
+                          fluid
+                          className="my-1"
+                          primary>
+                          Concluir
+                        </ButtonCustom>
+                      </div>
+                    </Form.Item>}
 
                   <div className="subLabel mt-5">
                     Já têm cadastro? Faça

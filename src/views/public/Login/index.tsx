@@ -8,19 +8,57 @@ import facebookSvg from '../../../icons/facebook.svg';
 import './login.css';
 import ButtonCustom from '../../../shared/ButtonCustom';
 import InputCustom from '../../../shared/InputCustom';
+import api from '../../../services/api';
+import Notify from '../../../shared/Notify';
 import { useHistory } from 'react-router-dom';
 
+declare interface ILogin {
+  email: string,
+  senha: string
+}
 
-
+declare interface ILoginResponse {
+  id: string,
+  email: string,
+  fullName: string,
+  role: string,
+  token: string,
+}
 
 function Login() {
   const [loading, setIsLoading] = useState(false);
   const history = useHistory();
 
-  const logar = () => {
+  async function logar(values: ILogin) {
     setIsLoading(true);
-    setTimeout(() => setIsLoading(false), 3000);
-  };
+
+    const payload = {
+      id: values.email,
+      password: values.senha,
+    };
+
+    api.post<ILoginResponse>('o/customer-login/login', payload)
+      .then((user) => {
+        setIsLoading(false);
+
+        localStorage.setItem('travellingToken', user.data.token);
+        localStorage.setItem('travellingUsuarioId', user.data.id);
+        localStorage.setItem('travellingUser', JSON.stringify(user.data.fullName));
+        localStorage.setItem('travellingRole', JSON.stringify(user.data.role));
+
+        setIsLoading(false);
+        history.push('/home');
+        window.location.reload();
+      })
+      .catch((err) => {
+        const { message } = err.response.data;
+        Notify('error', 'Atenção', message);
+
+        setIsLoading(false);
+        history.push('/');
+      });
+  }
+
 
   return (
     <div>
