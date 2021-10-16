@@ -35,10 +35,13 @@ function Home() {
         setIsLoading(false);
       })
       .catch((err) => {
-        debugger;
         if (err?.response) {
-          const { message } = err.response.data;
-          Notify('error', 'Atenção', message);
+          if (err?.response?.data) {
+            const { message } = err?.response?.data;
+            Notify('error', 'Atenção', message);
+          }
+          else
+            Notify('error', 'Atenção', err?.response);
         }
         setIsLoading(false);
       });
