@@ -38,8 +38,12 @@ function DadosPessoais() {
         history.push('/');
       })
       .catch((err) => {
-        const { message } = err.response.data;
-        Notify('error', 'Atenção', message);
+        if (err?.response?.data) {
+          const { message } = err?.response?.data;
+          Notify('error', 'Atenção', message);
+        }
+        else
+          Notify('error', 'Atenção', err?.response);
 
         setIsLoading(false);
       });
